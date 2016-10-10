@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>LCTF-misc | zanding</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="一个博客">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="LCTF-misc | zanding">
+    <meta name="twitter:description" content="一个博客">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="LCTF-misc | zanding">
+    <meta property="og:description" content="一个博客">
+
+    
+    <meta name="author" content="sud0">
+    
+    <link rel="stylesheet" href="../../../../css/vno.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="http://sudablog-10068329.file.myqcloud.com/logo.jpg">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+
+    <link rel="canonical" href="http://yoursite.com/2016/10/09/LCTF-misc/"/>
+
+    
+    <link rel="stylesheet" href="http://cdn.bootcss.com/highlight.js/9.7.0/styles/atelier-forest-light.min.css">
+      
+</head>
+
+<body class="home-template no-js">
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="../../../../js/main.js"></script>
+    <script src="http://cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(http://sudablog-10068329.file.myqcloud.com/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 zanding 的主页"><img src="http://sudablog-10068329.file.myqcloud.com/logo.jpg" width="80" alt="zanding logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for zanding">zanding</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">sud0</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">一个博客</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+              <li class="navigation__item"><a href="/tags/">分类</a></li>
+            
+              <li class="navigation__item"><a href="/friendlink">友链</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+  <li class="navigation__item">
+    <a href="http://weibo.com/sud0" title="我的微博" target="_blank">
+      <i class='social fa fa-weibo' style="font-size:1.66666666em;"></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li> 
+
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/sud0why" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github' style="font-size:1.66666666em;"></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+  <!-- mail -->
+  
+  <li class="navigation__item">
+    <a href="mailto:sud0.why@gmail.com" title="发送email给我" target="_blank">
+      <i class='social fa fa-envelope' style="font-size:1.5em;"></i>
+      <span class="label">Email</span>
+    </a>
+  </li>
+
+
+  <!-- QQ -->
+  
+  <li class="navigation__item">
+    <a href="http://849853532" title="从QQ与我联系" target="_blank">
+      <i class='social fa fa-qq' style="font-size:1.5em;"></i>
+      <span class="label">QQ</span>
+    </a>
+  </li>
+
+
+  <!-- wechat -->
+  
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-slate"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2016-10-09T12:24:02.000Z" class="post-list__meta--date date">2016-10-09</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="../../../../tags/CTF/">CTF</a>
+ </span>
+      <span class="page-pv">
+      &nbsp;阅读&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      </span> 
+   
+    </div>
+    <h1 class="post-title">LCTF-misc</h1>
+  </header>
+
+  <section class="post">
+    <h2 id="moblie-100"><a href="#moblie-100" class="headerlink" title="moblie 100"></a>moblie 100</h2><p>　　这一题的确是个福利题…并没有涉及到dex函数隐藏等小技巧，只是简单的使用proguard进行了混淆。可以静态也可动态（动态先改掉debug检测，还不如直接静态看一下），那么，关键部分源码：</p>
+<pre><code class="java">    private void getKey(){
+        try {
+            InputStream stream = this.getResources().getAssets().open(&quot;url.png&quot;);
+            int v = stream.available();
+            byte[] bs = new byte[v];
+            stream.read(bs, 0, v);
+            byte[] keybyte = new byte[16];
+            System.arraycopy(bs, 144, keybyte, 0, 16);
+            this.key = new String(keybyte, &quot;utf-8&quot;);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+</code></pre>
+<pre><code class="java">    private String handle(String naive){
+        try {
+            naive.getBytes(&quot;utf-8&quot;);
+            StringBuilder str = new StringBuilder();
+            for (int i = 0; i &lt; naive.length(); i += 2) {
+                str.append(naive.charAt(i + 1));
+                str.append(naive.charAt(i));
+            }
+            return str.toString();
+
+        }catch (UnsupportedEncodingException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+</code></pre>
+<pre><code class="java">    protected void Encryption(byte[] key){
+        try {
+            if (key == null) {
+                byte[] bytes = &quot;&quot;.getBytes(&quot;utf-8&quot;);
+                MessageDigest messageDigest = MessageDigest.getInstance(&quot;MD5&quot;);
+                byte[] bytes1 = messageDigest.digest(bytes);
+
+                secretKeySpec = new SecretKeySpec(bytes1, &quot;AES&quot;);
+                cipher = Cipher.getInstance(&quot;AES/ECB/PKCS5Padding&quot;);
+            }
+            else {
+                secretKeySpec = new SecretKeySpec(key, &quot;AES&quot;);
+                cipher = Cipher.getInstance(&quot;AES/ECB/PKCS5Padding&quot;);
+            }
+        }
+</code></pre>
+<p>　　从url.png中获得key，然后使用handle函数进行处理（奇偶位互换）作为最终AES加密的key；<br>　　flag密文由:</p>
+<pre><code>byte[] bye = {21,-93,-68,-94,86,117,-19,-68,-92,33,50,118,16,13,1,-15,-13,3,4,103,-18,81,30,68,54,-93,44,-23,93,98,5,59};
+new String(bye);
+</code></pre><p>获取；</p>
+<p>　　AES/ECB/PKCS5Padding，使用key对选手输入进行加密，得到的密文与flag密文进行比对；<br>　　故解密时只需<code>init(Cipher.DECRYPT_MODE, secretKeySpec)；</code><br>　　对flag密文进行解密即可。<br>　　flag:<code>LCTF{1t&#39;s_rea1ly_an_ea3y_ap4}</code></p>
+<h2 id="moblie-200"><a href="#moblie-200" class="headerlink" title="moblie 200"></a>moblie 200</h2><p>　　首先还是直接放出NDK部分源码…</p>
+<p>　　本题主要是静态反汇编分析能力…<br>　　EditText获取选手输入后，将其substring(5, 37)得到flag，亦为即将传入native方法的值，虽然没有检测其前5及后边的字符值，但对输入长度做了限定；<br>　　native checkPasswd(String input)方法分为两部分，一是对input做简单处理，即倒序；二则是一个base64编码，只是我把’=’用’.’来替换了；<br>　　input编码后直接与密文secret进行比对，所以程序内部并没有解密方法；<br>　　Jni_OnLoad函数内部则是简单的ptrace反调试和反模拟器的一些函数以及一个对dex的SMC，即将内存中的form函数的字节码用f0rm函数的来替换（其余两个是我后来觉得只有form和f0rm的话太过直接，于是添加进去的无用函数）。这种对dex字节码的SMC是一种Android低版本的方法（version &lt; 5），所以高系统版本手机上会crash掉…但由于只使用了AVD的模拟器及一款三星Android 4.4.4手机做测试，没有对其他机型做适配，所以有选手反应说在nexus5 4.4.3上也出了问题…虽然尽量使用了能够静态分析出的SMC方案，但仍在此表示诚挚的歉意…（请务必不要寄刀片…）<br>　　分析出encrypt是base64的话就很简单，只需将secret的’.’换为’=’，然后base64.b64decode(secret)即可得到倒序的flag;<br>　　flag为<code>iwantashellbecauseidonthaveitttt</code></p>
+<h2 id="crypt-200"><a href="#crypt-200" class="headerlink" title="crypt 200"></a>crypt 200</h2><ul>
+<li><p>写在前面……</p>
+<p>这道题本计划让参赛选手自己写脚本爆破的，然而ZZ出题人不小心把密文给的长了……于是几乎所有队伍都是在线解出来的……几乎成了签到题……出题人表示很悲伤……</p>
+</li>
+<li><p>出题人计划中的解题思路：</p>
+<p>首先通过自己写脚本/在线工具，查出密钥很可能为两段，分别是 7、13 。然后开始爆破短密码，每爆破一位检查一次是否正确。这里有一个小点：对7位密钥爆破时，只需把第一位预设为’a’，爆破后六位就可以。用python多线程实现，大概需要3-4小时即可得出结果，Ｃ语言会更快。</p>
+<p>怨念の出题人：只取密文中的前91个字母，你给我在线解啊在线解啊(〒︿〒)</p>
+</li>
+</ul>
+<h2 id="crypt-450"><a href="#crypt-450" class="headerlink" title="crypt 450"></a>crypt 450</h2><p>　　拿到流量包，只有三个http请求：</p>
+<ul>
+<li>主页</li>
+<li>网站图标(favicon.ico)</li>
+<li>下载了一个加密的zip文件(Somethingneeded.zip)</li>
+</ul>
+<p>　　压缩包有密码，爆破不出来也没有提示；主页上就一个下载压缩包的链接，和一个网站图标的请求，然后看favicon.ico。一个简单的隐写，改了文件高度= =没有想到这里会卡主一部分人，估计解压出来压缩包的都卡在密码上，没解压压缩包的，都卡在这个隐写上面了。</p>
+<p>　　用010editor打开图片，并载入png模板。找到文件的宽高字段，修改高度为一个略大的值，比如400，重新计算CRC并用新得到的CRC值替换原来字段的CRC值保存文件，打开就会得到zip加密的key。</p>
+<p>修改前：</p>
+<p><img src="http://sudablog-10068329.cos.myqcloud.com/LCTF-misc/xiugaiqian.png" alt="xiugaiqian"></p>
+<p>修改后：</p>
+<p><img src="http://sudablog-10068329.cos.myqcloud.com/LCTF-misc/xiugaihou.png" alt="xiugaihou"></p>
+<p><img src="http://sudablog-10068329.cos.myqcloud.com/LCTF-misc/ico.png" alt="ico"></p>
+<p>用得到的key解压压缩包会得到三个文件。</p>
+<ol>
+<li>发现RSA公钥中存在低解密指数攻击（加密指数过长）：通过Wiener Attack 攻击公钥n, e ，得到RSA私钥。恢复出RSA明文：</li>
+</ol>
+<pre><code>AES_key:&gt;&gt;JfffOaqYHvuSIkfU
+First sign: ElGamal; First HASH: SHA[in python:&gt;&gt;int(SHA.new(msg).digest().encode(&#39;hex&#39;),16)]
+</code></pre><ol>
+<li>使用1.中得到的AES的密钥解密文本，得到：</li>
+</ol>
+<pre><code>ESIGN
+HASH: SHA
+Alice in Sun Sep 25 02:40:07 CST 2016
+in these Signatures, important things r different....but....they r one and the same. indeed.
+</code></pre><p>　　通过1.中所给消息，知道本次信息传递中使用的是elgamal签名算法。发现几条对消息签名时使用了相同的随机指数（A值相同）。根据A,B,P,以及1.中给出的hash计算方法，解出elgamal的私钥。</p>
+<ol>
+<li>通过2.中的AES明文，知道本次信息传递中使用的是ESIGN签名算法。用AES解密后，发现明文是两篇演讲的片段。</li>
+</ol>
+<p>　　发现没有找到flag，回头检查3，通过计算签名s的长度，发现其长度为4094位。长度有些诡异，怀疑用来计算N的私钥有问题。通过以前的积累，或查询资料，发现本次esign中存在阈下信道。通过2.中所给信息，猜测本次阈下信道中的额外私钥r与2.中elgamal签名的私钥相同。对3.中签名信息计算后，得到信息：</p>
+<pre><code>flag:&gt;&gt;p1eas3_b00m_**__b0om_shak4l4ka_1am_****
+hash:&gt;&gt;b96648cc3f097c6faf581386b97d7e043521abe2369d1141d9a98d4897770ea7
+map(lambda x:x in string.letters[:26]+string.digits, flag)==[True for x in len(flag)]
+</code></pre><p>　　通过得到的信息得知：flag的格式、flag的hash值、flag包含的字符。其中，根据散列值长度得知，hash算法应为SHA256。此处有两种解法：</p>
+<p>　1. 猜测flag的值<br>　2. 爆破</p>
+<p>　　爆破耗时：in python  7966.50890207s</p>
+<p>解密过程脚本：</p>
+<pre><code class="python">from Crypto.Cipher import AES
+from Crypto.Util.number import inverse
+from Crypto.Hash import SHA
+
+#rsa wiener attack
+#rsa
+d=945479
+n=971381371047342986098344823
+RSA_cipher=[88338041376937641318014L]
+
+for x in RSA_cipher:
+    print hex(pow(x,d,n))[2:-1].decode(&#39;hex&#39;)
+
+#aes
+AES_key=&#39;JfffOaqYHvuSIkfU&#39;
+aes_cipher=[&#39;ciY5/kGF8Cx2it7gKs24ncfTd4SOWe2u7MKOKw==\n&#39;]
+for x in aes_cipher:
+    aes=AES.new(AES_key, AES.MODE_CBC,x[:16])
+    print aes.decrypt(x.decode(&#39;base64&#39;))[16:]
+
+#elgamal
+y=151487747L
+g=259867980L
+p=137967852157887L
+a=3937277622L
+
+b_1=1346835996L
+b_2=10539656313395L
+
+m1=&#39;ESIGN&#39;
+m2=&#39;in these Signatures, important things r different....but....they r one and the same. indeed.&#39;
+
+h1= int(SHA.new(m1).digest().encode(&#39;hex&#39;),16)
+h2= int(SHA.new(m2).digest().encode(&#39;hex&#39;),16)
+
+k = (h1-h2)*inverse((b_1 - b_2), (p-1)) %(p-1)
+##secret key in elgamal
+x = ((h1 - k*b_1)*inverse(a, (p-1))%(p-1))/2##---------------&gt;or :  x ==((h1 - k*b_1)*inverse(a, (p-1))%(p-1)) + (p-1)   
+
+print &#39;elgamal secrect key:&gt;&gt;&#39;+str(x)
+
+tmp=&#39;&#39;
+
+aes_cipher=[&#39;G71n7HT3eqcn0bsBL4irfT00IMo3m6DRiHwIUSnxBLeQPEnDNH0LMbg5xU1E3I4C7CX4cJGRB+LNyrx/kbf\nrAw0CoI8XRBx/2IINBsuK/j4OP3V\n&#39;]
+for each in aes_cipher:
+    aes=AES.new(AES_key, AES.MODE_CBC,each[:16])
+    print aes.decrypt(each.decode(&#39;base64&#39;))[16:]
+
+esign=[471511876301702280974181411476522002777637311080653697834289305316477478889515245281489854177021915162579455595532972926008542466995L]
+for e in esign:
+    tmp += hex((e%x))[2:-1].decode(&#39;hex&#39;)
+print tmp
+</code></pre>
+<p>爆破脚本：</p>
+<pre><code class="python">from Crypto.Hash import SHA256
+from Crypto.Hash import SHA512
+from time import time
+import string
+
+rang = string.letters[:26]+string.digits+&#39;_&#39;
+m=&#39;p1eas3_b00m_me__b0om_shak4l4ka_1am_flag&#39;
+flag1 = &#39;p1eas3_b00m_&#39;
+flag2 = &#39;__b0om_shak4l4ka_1am_&#39;
+h = &#39;b96648cc3f097c6faf581386b97d7e043521abe2369d1141d9a98d4897770ea7&#39;
+
+z= time()
+for a in rang:
+    for b in rang:
+        for c in rang:
+            for d in rang:
+                for e in rang:
+                    for f in rang:
+                        if SHA256.new(flag1+a+b+flag2+c+d+e+f).hexdigest() == h:
+                            print flag1+a+b+flag2+c+d+e+f
+print time() - z
+</code></pre>
+<h2 id="misc-150"><a href="#misc-150" class="headerlink" title="misc 150"></a>misc 150</h2><p>　　首先，我们解压得到一个Misc150.txt文件。这里必须使用Winrar解压，因为其中存在文件流数据。这一点在txt文件以及压缩包大小不一致中也可以看得出来。<br>　　Misc150.txt中说道 Flag.zip behind me. 暗示着文件流的存在，以及流名称为Flag.zip。我们就使用命令行来访问文件流。</p>
+<p><code>&gt;&quot;C:\Program Files\WinRAR\winrar.exe&quot; Misc150.txt:Flag.zip</code></p>
+<p>　　打开压缩包，得到一个小压缩包一个图片。其中，小压缩包名字为Steins;Gate也就是命运石之门的名字。而图片的Christina则是命运石的女主角。在题目的描述中，有说道“命运石之门里没有flag”，这也就暗示着flag不在这两文件里面。<br>　　这样，我们剩下的选择就只有当前这个zip文件了。如果细心的话，会发现压缩包的注释部分有非常长条的空白行，将其三行复制出来，tab用1替换，空格用0替换就可以得到一串二进制。简单判断二进制应为7为ASCII码，解码得flag。</p>
+<p><img src="http://sudablog-10068329.cos.myqcloud.com/LCTF-misc/zhushi.png" alt="zhushi"></p>
+<p>　　另一种方法是通过Ultra edit等软件，查看包数据也能发现问题。在这一部分有规律的0x09，0x20，将其提取出来，替换一下也能得到flag。</p>
+<p><img src="http://sudablog-10068329.cos.myqcloud.com/LCTF-misc/UE.png" alt="UE"></p>
+<h2 id="misc-300"><a href="#misc-300" class="headerlink" title="misc 300"></a>misc 300</h2><p>　　拿到流量包，分析可知有两次wpa握手的过程，连接的同一个wifi。第二次握手过程中wireshark根据标志位识别出来的顺序颠倒了，说明握手包有问题。根据wpa认证过程，修改Key Information字段，得到修复的包。然后扔到aircrack去跑，在有hint的情况下三个小时之内能跑出来，得到密码：55672627，然后airdecap解包。本来以为不会有大佬注意到这是被打掉了强制重新连得，没想到大佬们注意到了好细心Orz。</p>
+<p><img src="http://sudablog-10068329.cos.myqcloud.com/LCTF-misc/biaozhiwei.png" alt="biozhiwei"></p>
+<p>　　tips：应该先爆破再修复和先修复再爆破是不一定的，aircrack如果不修复就爆破是爆破不出来的，有的工具是通过第一次认证破解的，有的工具通过第二次认证破解，如果不修复的话跑出来与否就看用的啥了，通过第二次认证跑的肯定不修复出不来结果。<br>　　得到通信内容：</p>
+<ul>
+<li>一个文件需要逆向分析：re2</li>
+<li>一个ip和端口：119.28.62.216:3333</li>
+</ul>
+<p>re2源码：  </p>
+<pre><code class="C">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+
+void readFlag()
+{
+    FILE *pFile=fopen(&quot;./flag.txt&quot;,&quot;r&quot;);
+    char pBuf[32]={0};//socat tcp-l:8000,reuseaddr,fork exec:./re2
+    fread(pBuf,1,32,pFile);
+    printf(&quot;%s&quot;,pBuf);
+    fclose(pFile);
+}
+
+int main()
+{
+    int i,j;
+    int a[19*19] = {0};
+    int b[19][19];
+    int k;
+
+    setvbuf(stdout, 0, 2, 0);
+    setvbuf(stdin, 0, 2, 0);
+
+    for (k = 1; k &lt;=19 ; k=k+2)
+    {
+        for (i = 0; i &lt; k; ++i)
+        {
+            for (j = 0; j &lt; k; ++j)
+            {
+                scanf(&quot;%d&quot;,&amp;b[i][j]);
+                a[(b[i][j]-1)%(k*k)] = 1;
+            }
+        }
+
+        for (i = 0; i &lt; k*k; ++i)
+        {
+            if(a[i]==0)
+                return -1;
+        }
+
+        int num;
+        srand(time(NULL));
+        num = rand()%k;
+
+        int c1=0,c2=0,c3=0,c4=0;
+        for (i = 0; i &lt; k; ++i)
+        {
+            c1 += b[num][i];
+        }
+        for (i = 0; i &lt; k; ++i)
+        {
+            c2 += b[i][num];
+        }
+        for (i = 0; i &lt; k; ++i)
+        {
+            for (j = 0; j &lt; k; ++j)
+            {
+                if(i==j) c3 += b[i][j];
+                if (i+j==k-1) c4+=b[i][j];
+            }
+        }
+        if (c1 != c2 || c3 != c4 || c1 != c3)
+            return -1;
+    }
+
+    readFlag();
+
+    return 0;
+}
+</code></pre>
+<p>编写程序并提交结果：</p>
+<pre><code class="Ｃ">#include  &lt;stdio.h&gt;
+#include  &lt;stdlib.h&gt;
+
+#define   MAXSIZE   20
+
+int main()
+{
+     int  matrix[MAXSIZE][MAXSIZE]; /* the magic square   */
+     int  count;                    /* 1..n*n counting    */
+     int  row;                      /* row index          */
+     int  column;                   /* column index       */
+     int  order;                    /* input order        */
+     char line[100];
+
+     for (order = 1; order &lt;= 19; order += 2)
+     {
+          row    = 0;         /* start of from the middle */
+          column = order/2;   /* of the first row.        */
+          for (count = 1; count &lt;= order*order; count++) {
+               matrix[row][column] = count; /* put next # */
+               if (count % order == 0)  /* move down ?    */
+                    row++;    /* YES, move down one row   */
+               else {         /* compute next indices     */
+                    row    = (row == 0) ? order - 1 : row - 1;
+                    column = (column == order-1) ? 0 : column + 1;
+               }
+          }
+          for (row = 0; row &lt; order; row++) {
+               for (column = 0; column &lt; order; column++)
+                    printf(&quot;%d &quot;, matrix[row][column]);
+          }
+          printf(&quot;\n&quot;);
+     }
+     return 0;
+}
+</code></pre>
+<h2 id="misc-400"><a href="#misc-400" class="headerlink" title="misc 400"></a>misc 400</h2><p>　　扫端口和ftp登陆尝试的流量都没啥用。。。</p>
+<p>　　利用proftp的洞：CVE2015-3306，获得了192.168.138.136的shell，写到web目录下一个1.php一句话。然后通过另外一台机器连菜刀，down下来了两个文件：xor.jpg和whoami.jpg。名字提示很明显，xor，没有挖坑，所以两个文件xor一下得到可运行的python代码，逆向这段代码可获得AES_KEY{}。话说为什么会有人提交这个东西呢。。。明显格式不对啊。。。</p>
+<p>proftpd漏洞利用流量：</p>
+<p><img src="http://sudablog-10068329.cos.myqcloud.com/LCTF-misc/proftpd.png" alt="proftpd"></p>
+<p>然后取得msfshell：</p>
+<p><img src="http://sudablog-10068329.cos.myqcloud.com/LCTF-misc/msf.png" alt="msf"></p>
+<p>利用msfshell写菜刀一句话：</p>
+<p><img src="http://sudablog-10068329.cos.myqcloud.com/LCTF-misc/caidao.png" alt="caidao"></p>
+<p>菜刀连接下载文件，菜刀流量的话，去掉文件头和文件尾的东西就ok了：</p>
+<p><img src="http://sudablog-10068329.cos.myqcloud.com/LCTF-misc/tupian.png" alt="tupian"></p>
+<p>图片解密python脚本：</p>
+<pre><code class="python">with open(&quot;whoami.jpg&quot;,&#39;r&#39;) as file:
+  pic=file.read()
+temp=&#39;&#39;
+with open(&#39;xor.jpg&#39;,&#39;r&#39;) as file:
+  t=file.read()
+  for a,b in zip(t,pic):
+    print chr(ord(a)^ord(b)),
+
+m=&quot;cc90b9054ca67557813694276ab54c67aa93092ec87dd7b539&quot;
+def process(a,b,m):
+  return &quot;&quot;.join(map(chr,map(lambda x: (x*a+b)%251,map(ord,m.decode(&#39;hex&#39;)))))
+for i in xrange(255):
+  for j in xrange(255):
+    if &quot;AES&quot; in process(i,j,m):
+      print process(i,j,m)
+</code></pre>
+<p>得到AES_key{}，AES啊！<br>然后DNS流量异常，找了个DNSshell不能用啊，于是自己xjb写了一个xjb传的shell。发一个baidu.com的开始接收命令，一个命令执行传回去一个google.com。找到这些返回google.com的蜜汁流量，拼到一起用AES_key解密就可以看到``：</p>
+<p><img src="http://sudablog-10068329.cos.myqcloud.com/LCTF-misc/DNS.png" alt="DNS"></p>
+<p>混进去了一堆xjb访问的http流量，访问了L-team.org的about页面，发现DNS解析了不少dalao博客的地址，就当广告了233333：</p>
+<p><img src="http://sudablog-10068329.cos.myqcloud.com/LCTF-misc/boke.png" alt="blog"></p>
+<p>最后，解密得到<code>Please submit the used ftp CVE ID like &quot;CVE********&quot;and LCTF{A11_1n_0ne_Pcap} as your flag.eg.&quot;CVE12345678A11_1n_0ne_Pcap&quot;</code></p>
+
+  </section>
+
+</article>
+<section class="read-more">
+           
+    
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">更早的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2016/10/09/hello-world/" title="Hello World">Hello World</a></h2>
+                <p class="excerpt">
+                
+                Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2016-10-09T12:19:50.936Z" class="post-list__meta--date date">2016-10-09</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2016/10/09/hello-world/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+            
+<section class="post-comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="http://yoursite.com/2016/10/09/LCTF-misc/" data-title="LCTF-misc" data-url="http://yoursite.com/2016/10/09/LCTF-misc/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:"sudalover1"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+            <footer class="footer">
+    </span>
+    <span class="footer__copyright">
+        &copy; 2016 - 本站由 <a href="/">@sud0</a> 创建，基于 <a href="http://hexo.io">Hexo</a> 搭建。
+    </span>
+    <span class="footer__copyright">
+        站点采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/">署名-非商用-相同方式共享 3.0</a> 许可协议，转载请保留原文链接及作者。
+    </span>
+    <span class="footer__copyright">
+        感谢<a href="http://github.com/onevcat" target="_blank">@onevcat</a>原创，由<a href="https://github.com/monniya/">@Monniya</a> 修改的 <a href="https://github.com/monniya/hexo-theme-new-vno ">new-vno</a> 主题。
+    </span>
+    <script src="http://s95.cnzz.com/z_stat.php?id=1260564302&web_id=1260564302" language="JavaScript"></script>
+</footer>
+        </div>
+    </div>
+
+    
+
+     
+    
+
+
+    
+    <script src="http://s95.cnzz.com/z_stat.php?id=1260564302&web_id=1260564302" language="JavaScript"></script>
+
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    
+    </script>
+    
+</body>
+</html>
