@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>Hitcon2016 Hackpad and Padding Oracle Attack | Lemonsoda</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="喜欢一切原原本本的东西&lt;br&gt;前进在信息安全的路上">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Hitcon2016 Hackpad and Padding Oracle Attack | Lemonsoda">
+    <meta name="twitter:description" content="喜欢一切原原本本的东西&lt;br&gt;前进在信息安全的路上">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Hitcon2016 Hackpad and Padding Oracle Attack | Lemonsoda">
+    <meta property="og:description" content="喜欢一切原原本本的东西&lt;br&gt;前进在信息安全的路上">
+    <meta name="toTop" content="true">
+
+    
+    <meta name="author" content="sud0">
+    
+    <link rel="stylesheet" href="../../../../css/vno.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    
+    <link rel="icon" href="http://sudablog-10068329.file.myqcloud.com/logo.jpg">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+
+    <link rel="canonical" href="http://sudalover.cn/2016/10/18/Hitcon2016-Hackpad-and-Padding-Oracle-Attack/"/>
+
+    
+    <link rel="stylesheet" href="http://cdn.bootcss.com/highlight.js/9.7.0/styles/atom-one-dark.min.css">
+      
+</head>
+
+<body class="home-template no-js">
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="../../../../js/main.js"></script>
+    <script src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(http://sudablog-10068329.file.myqcloud.com/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 Lemonsoda 的主页"><img src="http://sudablog-10068329.file.myqcloud.com/logo.jpg" width="80" alt="Lemonsoda logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for Lemonsoda">Lemonsoda</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">简单，阳光，努力</span>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">喜欢一切原原本本的东西<br>前进在信息安全的路上</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+              <li class="navigation__item"><a href="/tags/">分类</a></li>
+            
+              <li class="navigation__item"><a href="/friendlink">友链</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme">关于我</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+  <li class="navigation__item">
+    <a href="http://weibo.com/sud0" title="我的微博" target="_blank">
+      <i class='social fa fa-weibo' style="font-size:1.66666666em;"></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li> 
+
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/sud0why" title="查看我的GitHub主页" target="_blank">
+      <i class='social fa fa-github' style="font-size:1.66666666em;"></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+  <!-- mail -->
+  
+  <li class="navigation__item">
+    <a href="mailto:sud0.why@gmail.com" title="发送email给我" target="_blank">
+      <i class='social fa fa-envelope' style="font-size:1.5em;"></i>
+      <span class="label">Email</span>
+    </a>
+  </li>
+
+
+  <!-- QQ -->
+  
+  <li class="navigation__item">
+    <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=849853532&amp;site=qq&amp;menu=yes" title="从QQ与我联系" target="_blank">
+      <i class='social fa fa-qq' style="font-size:1.5em;"></i>
+      <span class="label">QQ</span>
+    </a>
+  </li>
+
+
+  <!-- wechat -->
+  
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-slate"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2016-10-18T10:58:10.000Z" class="post-list__meta--date date">2016-10-18</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="../../../../tags/CTF/">CTF</a>
+ </span>
+      <span class="page-pv">
+      &nbsp;阅读&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      </span> 
+   
+    </div>
+    <h1 class="post-title">Hitcon2016 Hackpad and Padding Oracle Attack</h1>
+  </header>
+
+  <section class="post">
+    <hr>
+<p>　　在hitcon2016的一道题，比赛完才看了别人的wp研究了一下做出来，正好也顺便研究了一下Padding Oracle Attack。当时这道题一点头绪都没有，其实就是一个密码学题嘛= =，然而1phan当时也没有看出来这道题怎么做。后面我自己看的时候，看密码学看的头大，天辣我怎么这么笨QAQ。</p>
+<p>　　Padding Oracle Attack，即通过padding进行侧信道攻击，恢复原文内容。Padding Oracle Attack是针对CBC加密模式的攻击，与具体采用的分组加密算法没有关系。<br>　　先说Hitcon的这道题hackpad，拿下来是一个流量包，大概浏览了一眼看不出来有价值的信息，因为我也没有接触过这种攻击，所以一头雾水。看了别人的wp，在对web服务正常访问之后，发出了大量的post请求，得到了http状态码500和200，正常接收到的信息是md5加密之后的内容，队友拿着去cmd5查了查并没有什么卵用，所以肯定不是从这入手，200和500只是两种状态而已。假设大家对Padding Oracle Attack有一定了解，因为这是采用这种攻击方式的流量，所以直接提取出每次最终尝试出来的IV拼接起来，与最开始接受到的三条消息xor就可以得到flag了。所以说来说去主要还是Padding Oracle Attack。<br>　　在网上查了很久，光看还是不能理解，所以动手分析了一下这些流量：</p>
+<p>　　可以看到在三次正常的get请求之后，向web发送一个密文，如果padding正确且可以解密，webserver会返回一个解密后原文md5的结果。接受到的流是672字节，分组加密可能是8字节或者16字节或者32字节，当然64字节就不能整除了，而且看post过去的都是64字节，所以这个分组加密应该是32字节一组，那么密文的前32字节是加密采用的初始IV。</p>
+<p>　　以这道题为例，攻击者试图恢复<code>3ed2e01c1d1248125c67ac637384a22d997d9369c74c82abba4cc3b1bfc65f026c957ff0feef61b161cfe3373c2d9b905639aa3688659566d9acc93bb72080f7e5ebd643808a0e50e1fc3d16246afcf688dfedf02ad4ae84fd92c5c53bbd98f08b21d838a3261874c4ee3ce8fbcb96628d5706499dd985ec0c13573eeee03766f7010a867edfed92c33233b17a9730eb4a82a6db51fa6124bfc48ef99d669e21740d12656f597e691bbcbaa67abe1a09f02afc37140b167533c7536ab2ecd4ed37572fc9154d23aa7d8c92b84b774702632ed2737a569e4dfbe01338fcbb2a77ddd6990ce169bb4f48e1ca96d30eced23b6fe5b875ca6481056848be0fbc26bcbffdfe966da4221103408f459ec1ef12c72068bc1b96df045d3fa12cc2a9dcd162ffdf876b3bc3a3ed2373559bcbe3f470a8c695bf54796bfe471cd34b463e9876212df912deef882b657954d7dada47</code>的明文，于是初始IV<code>3ed2e01c1d1248125c67ac637384a22d</code>，第一个密文分组Block1(简称B1)为<code>997d9369c74c82abba4cc3b1bfc65f02</code>第二个密文分组B2为<code>6c957ff0feef61b161cfe3373c2d9b90</code>。<br>　　首先看一下CBC模式的加密过程：<br><img src="http://sudablog-10068329.cos.myqcloud.com/padding/po_fig3.png" alt="encrypt"><br>　　即IV异或padding后的原文分组plaintext1(P1)，得到中间值经过密钥key加密得到密文分组B1，加密原文分组2即P2的时候用密文分组B1作为IV，异或padding后的原文分组P2，得到中间值经过密钥key加密得到密文分组B2。<br>　　再来看看解密过程：<br><img src="http://sudablog-10068329.cos.myqcloud.com/padding/po_fig4.png" alt="decrypt"><br>　　密文分组B1经过密钥key解密得到中间值，中间值异或IV得到原文。密文分组B2经过密钥key解密，把密文分组B1作为输入IV进行异或，得到原文分组P2。</p>
+<p>　　受webserver影响，有些webserver接收密文，采用自己的key进行解密之后padding不正确，会返回500错误，padding正确，返回200ok。<br>　　正确的padding值：</p>
+<ul>
+<li>一个0x01（0x01）</li>
+<li>两个0x02（0x02，0x02）</li>
+<li>三个0x03（0x03，0x03，0x03）</li>
+<li>四个0x04（0x04，0x04，0x04，0x04）</li>
+<li>……</li>
+</ul>
+<p>　　这种情况下我们针对每一个分组慢慢调整IV的值，使之解密之后得到正确的padding，然后推导出中间值，与对应的密文分组异或即可得到原文。这段如果不懂可以自己画一个CBC解密的流程图：<br><img src="http://sudablog-10068329.cos.myqcloud.com/padding/CBCde.jpg" alt="CBC"></p>
+<p>　　可以看出，如果我们要恢复原文内容，，在密文已有的情况下，我们只需要得到中间值即可恢复原文。</p>
+<p>　　想得到中间值，用到的就是这种padding oracle attack，我们单独取出一个密文分组B1=997d9369c74c82abba4cc3b1bfc65f02，并另一个testIV=000000000000000000000000000000ff，在这种情况下，遍历最后一个字节的值，使得服务端解密之后最后一个字节为0x01是正确的padding。<br><img src="http://sudablog-10068329.cos.myqcloud.com/padding/decode.jpg" alt="testIV"></p>
+<p>　　这样我们在testIV最后一个字节为0x00时，服务器端返回了200即padding没有问题为0x01，我们可以得到中间值最后一字节：0x00^0x01=0x01。<br>　　然后我们可以开始遍历倒数第二个字节，此时<strong>注意</strong>有<strong>两个条件</strong>：</p>
+<ol>
+<li>第二次遍历结果要求padding为0x02，0x02.</li>
+<li>这样我们要固定testIV最后一个字节：padding最后一个字节(0x02)^中间值最后一个字节(0x01)=0x03.</li>
+</ol>
+<p>　　所以开始遍历时testIV=0000000000000000000000000000FF03，最终我们在testIV=0000000000000000000000000000d903时，得到了服务器返回的200，所以此时中间值倒数第二个字节为：0xd9^0x02=0xdb，重复上述过程得到padding全为0x10时的testIV=67acd06f7f7b28762310ce1213fccb11。这个时候就可以恢复对应的原文了：<br><img src="http://sudablog-10068329.cos.myqcloud.com/padding/revover.jpg" alt="recover"><br>　　(忽略最上面的0x0F)，中间值=测试完成完整的testIV^0x10填充的padding，原文分组P1=中间值^上一个密文分组(如果解密的是第一个密文分组则异或初始IV)。这样解密的过程就结束了。这部分对应wp中就是<code>for i in range(16*20):res += chr(ord(secret[i]) ^ (ord(imd[i])^16))</code></p>
+<p>　　然后回归原题，流量包要处理首先要过滤，通过wireshark过滤功能去掉500回复的包，然后筛选出来每次testIV最终的结果拼接起来：</p>
+<ol>
+<li>应用过滤器”http.response.code != 200”</li>
+<li>忽略掉过滤出来的包”Edit &gt; Ignore All Displayed Packets”</li>
+<li>应用过滤器”http.response_in”</li>
+<li>导出这部分包</li>
+</ol>
+<p>　　放一下别人写的wp的解题脚本：<br><br></p>
+<pre><code class="python">from scapy.all import *
+import re
+
+# Load from filtered pcap
+a = rdpcap(&quot;input_filter.pcap&quot;)
+
+secret = &quot;3ed2e01c1d1248125c67ac637384a22d997d9369c74c82abba4cc3b1bfc65f026c957ff0feef61b161cfe3373c2d9b905639aa3688659566d9acc93bb72080f7e5ebd643808a0e50e1fc3d16246afcf688dfedf02ad4ae84fd92c5c53bbd98f08b21d838a3261874c4ee3ce8fbcb96628d5706499dd985ec0c13573eeee03766f7010a867edfed92c33233b17a9730eb4a82a6db51fa6124bfc48ef99d669e21740d12656f597e691bbcbaa67abe1a09f02afc37140b167533c7536ab2ecd4ed37572fc9154d23aa7d8c92b84b774702632ed2737a569e4dfbe01338fcbb2a77ddd6990ce169bb4f48e1ca96d30eced23b6fe5b875ca6481056848be0fbc26bcbffdfe966da4221103408f459ec1ef12c72068bc1b96df045d3fa12cc2a9dcd162ffdf876b3bc3a3ed2373559bcbe3f470a8c695bf54796bfe471cd34b463e9876212df912deef882b657954d7dada47&quot;
+imd = &quot;&quot;
+
+# Loop all packet
+for i, p in enumerate(a[5:]):
+    # Do it only packets that have 16 lenght padding
+    if (i%16) == 15:
+        m = re.search(r&quot;msg=([0-9a-f]+)&quot;, str(p[TCP].payload))
+        imd += m.group(1)[:32]
+
+secret = secret.decode(&quot;hex&quot;)
+imd = imd.decode(&quot;hex&quot;)
+
+res = &quot;&quot;
+#Decrypt secret message
+for i in range(16*20):
+    res += chr(ord(secret[i]) ^ (ord(imd[i])^16))
+
+print res
+</code></pre>
+<p><br><br>　　原wp链接：<a href="http://crypto.rop.sh/post/UCYDL42CB9UN" target="_blank" rel="external">Hackpad HITCON 2016 CTF</a></p>
+<p>　　Padding Oracle Attack还可以用来控制解密后的明文，在我们得到中间值后，通过与明文异或运算，可以得到对应的IV。<br>　　当我们有多个分组时，从最后一个分组推导IV，作为前一个分组的密文，再推导前一个分组，便可以控制解密之后的整个明文</p>
+<p>　　关于Padding Oracle Attack的参考资料众多，我也只是实在是看不懂了，脑子疼，就用笔算了算才理清楚了这些关系，并记录下来，做了个笔记。<br><br></p>
+
+  </section>
+</article>
+<section class="read-more">
+           
+    
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">更早的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/2016/10/16/MyBlog/" title="MyBlog">MyBlog</a></h2>
+                <p class="excerpt">
+                
+                
+　　博客基本算是搭建好了，从一开始没有接触过hexo到后面的主题修改和CSS修改，JS修改，目前hexo搞不懂的地方基本只剩下一个大类就是CSS的文件生成。插件倒是没有写过，今天装了一个插件还研究半天。
+　　一开始找到的是tangkunyin的hexo-theme-vno，vno主题原生是在Jek
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2016-10-16T07:15:13.000Z" class="post-list__meta--date date">2016-10-16</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="../../../../tags/瞎扯/">瞎扯</a>
+</span><a class="btn-border-small" href="/2016/10/16/MyBlog/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+
+            
+<section class="post-comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="http://sudalover.cn/2016/10/18/Hitcon2016-Hackpad-and-Padding-Oracle-Attack/" data-title="Hitcon2016 Hackpad and Padding Oracle Attack" data-url="http://sudalover.cn/2016/10/18/Hitcon2016-Hackpad-and-Padding-Oracle-Attack/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:"sudalover1"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+            <footer class="footer">
+    </span>
+    <span class="footer__copyright">
+        &copy;2016-本站由<a href="/">@sud0</a>创建，基于<a href="http://hexo.io">Hexo</a>搭建。陕ICP备<a href="http://www.miitbeian.gov.cn">16014770</a>号
+    </span>
+    <span class="footer__copyright">
+        站点采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/">署名-非商用-相同方式共享 3.0</a> 许可协议，转载请保留原文链接及作者。
+    </span>
+    <span class="footer__copyright">
+        感谢<a href="http://github.com/onevcat" target="_blank">@onevcat</a>原创，由<a href="https://github.com/monniya/">@Monniya</a> 修改的 <a href="https://github.com/monniya/hexo-theme-new-vno ">new-vno</a> 主题。
+    </span>
+</footer>
+        </div>
+    </div>
+
+    
+
+     
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?a37f7355ddd976b07030cbcaf56f0af5";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    
+    </script>
+    
+</body>
+</html>
